@@ -1,5 +1,24 @@
 import sys
+from PIL import Image
+
 import qrcode
+
+def insertLogo():
+    # TODO fix file naming convention
+    im = Image.open('some_file.png')
+    im = im.convert("RGBA")
+    logo = Image.open('logo.png')
+    basewidth = 150
+
+    wpercent = (basewidth / float(logo.size[0]))
+    hsize = int((float(logo.size[1]) * float(wpercent)))
+    logo = logo.resize((basewidth, hsize))
+
+    box = ((im.size[0] - logo.size[0]) // 2,
+           (im.size[1] - logo.size[1]) // 2)
+    im.paste(logo, box)
+    im.save('some_file.png')
+
 
 def generateQRcode(SSID, T, P, H):
     """Function to get the QR code
@@ -10,10 +29,20 @@ def generateQRcode(SSID, T, P, H):
     :param H: SSID hidden
     :return: None
     """
-    wifi_format = f"WIFI:S:{SSID};T:{T};P:{P};H:{bool(H)};;"
-    img = qrcode.make(wifi_format)
-    # qrcode.image.pil.PilImage
-    img.save("some_file.png")
+    wifi_format = f"WIFI:S:{ssid};T:{t};P:{p};H:{h};;"
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        box_size=10,
+        border=4,
+    )
+
+    qr.add_data(wifi_format)
+    qr.make()
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save("some_file.png")  # TODO fix file naming convention
+
 
 def inputInfo():
     ssid = input("Enter your wifi name:")
@@ -21,6 +50,7 @@ def inputInfo():
     password = input("Enter your wifi password:")
     hidden = False
     generateQRcode(ssid, encryption, password, hidden)
+    insertLogo() # TODO fix, panel checks
 
 
 def argParser():
