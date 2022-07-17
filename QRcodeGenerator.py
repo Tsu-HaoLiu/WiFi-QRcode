@@ -20,13 +20,13 @@ def insertLogo():
     im.save('some_file.png')
 
 
-def generateQRcode(SSID, T, P, H):
+def generateQRcode(ssid, t, p, h):
     """Function to get the QR code
 
-    :param SSID: Service Set Identifier, is the name of your network/Wi-Fi
-    :param T: The encryption type of your network(WEP, WPA, WPA2...) https://en.wikipedia.org/wiki/Wi-Fi_Protected_Access
-    :param P: Password of your network device
-    :param H: SSID hidden
+    :param ssid: Service Set Identifier, is the name of your network/Wi-Fi
+    :param t: The encryption type of your network(WEP, WPA, WPA2...) https://en.wikipedia.org/wiki/Wi-Fi_Protected_Access
+    :param p: Password of your network device
+    :param h: SSID hidden
     :return: None
     """
     wifi_format = f"WIFI:S:{ssid};T:{t};P:{p};H:{h};;"
