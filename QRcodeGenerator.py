@@ -2,22 +2,25 @@ import sys
 from PIL import Image
 
 import qrcode
+from qrcode.image.styledpil import StyledPilImage
+from qrcode.image.styles import moduledrawers as md
 
-def insertLogo():
-    # TODO fix file naming convention
-    im = Image.open('some_file.png')
-    im = im.convert("RGBA")
-    logo = Image.open('logo.png')
-    basewidth = 150
+filename = ""
+
+def insertLogo(img, logo_file: str, logo_size: int = 150):
+
+    img = img.convert("RGBA")
+    logo = Image.open(logo_file)
+    basewidth = logo_size
 
     wpercent = (basewidth / float(logo.size[0]))
     hsize = int((float(logo.size[1]) * float(wpercent)))
     logo = logo.resize((basewidth, hsize))
 
-    box = ((im.size[0] - logo.size[0]) // 2,
-           (im.size[1] - logo.size[1]) // 2)
-    im.paste(logo, box)
-    im.save('some_file.png')
+    box = ((img.size[0] - logo.size[0]) // 2,
+           (img.size[1] - logo.size[1]) // 2)
+    img.paste(logo, box)
+    img.save(filename)
 
 
 def generateQRcode(ssid, t, p, h):
@@ -29,6 +32,7 @@ def generateQRcode(ssid, t, p, h):
     :param h: SSID hidden
     :return: None
     """
+    # qrcode.image.pil.PilImage
     wifi_format = f"WIFI:S:{ssid};T:{t};P:{p};H:{h};;"
     qr = qrcode.QRCode(
         version=1,
@@ -40,17 +44,42 @@ def generateQRcode(ssid, t, p, h):
     qr.add_data(wifi_format)
     qr.make()
 
-    img = qr.make_image(fill_color="black", back_color="white")
-    img.save("some_file.png")  # TODO fix file naming convention
+    img = qr.make_image(
+        fill_color="black",
+        back_color="white",
+        image_factory=StyledPilImage,
+        module_drawer=md.RoundedModuleDrawer(),
+        eye_drawer=md.RoundedModuleDrawer()
+    )
+
+    img.save(filename)
+    return img
+
+
+def imageCombo(userinput):
+    global filename
+    filename = f"{userinput['ssid']}_QRCode.png"
+
+    qrimg = generateQRcode(userinput['ssid'], userinput['encryption'],
+                           userinput['password'], userinput['hidden'])
+
+    if logo := userinput.get('logo', False):
+        size = userinput.get('size', 150)
+        insertLogo(qrimg, logo, int(size))
 
 
 def inputInfo():
-    ssid = input("Enter your wifi name:")
-    encryption = input("Enter your router encryption type (WEP, WPA, WPA2):")
-    password = input("Enter your wifi password:")
-    hidden = False
-    generateQRcode(ssid, encryption, password, hidden)
-    insertLogo() # TODO fix, panel checks
+    user_info = dict()
+
+    user_info['ssid'] = input("Enter your wifi name:")
+    user_info['encryption'] = input("Enter your router encryption type (WEP, WPA, WPA2):")
+    user_info['password'] = input("Enter your wifi password:")
+    user_info['hidden'] = bool(input("Is your SSID hidden? (True, False)"))
+    if logo := input("Location of your logo (optional):"):
+        user_info['logo'] = logo
+        user_info['size'] = input("Size of your logo (default: 150):")
+
+    imageCombo(user_info)
 
 
 def argParser():
@@ -60,14 +89,14 @@ def argParser():
     parse = argparse.ArgumentParser()
     parse.add_argument(
         '-ssid',
-        '--service_set_id',
+        '-service_set_id',
         type=str,
         required=True,
         help=f'Service Set Identifier (SSID) is your Wi-Fi\'s name.'
     )
     parse.add_argument(
         '-e',
-        '--encryption_type',
+        '--encryption',
         type=str,
         help=f'This is the type of encryption used on your Wi-Fi (WEP, WPA, WPA2, etc.)'
     )
@@ -91,9 +120,16 @@ def argParser():
         type=str,
         help='The file location you want in the middle of your QR code.'
     )
+    parse.add_argument(
+        '-s',
+        '--size',
+        type=int,
+        default=150,
+        help='The size of your logo (default: 150).'
+    )
 
     args = parse.parse_args()
-    generateQRcode(*vars(args).values())
+    imageCombo(vars(args))
 
 
 # Press the green button in the gutter to run the script.
