@@ -5,8 +5,8 @@ Generate Wifi login info with a QR code
 ## Usage
 
 ```python
-
-python 
+python QRcodeGenerator.py --help
+```
 
 
 ## Screenshots
