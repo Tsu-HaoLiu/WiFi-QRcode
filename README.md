@@ -23,9 +23,8 @@ usage: QRcodeGenerator.py [-h] -ssid SSID [-e ENCRYPTION] -p PASSWORD [-hid]
 ## Screenshots
 
 
-## Types
-
-<!-- secret cute cat
 ![Custom QR codes](https://user-images.githubusercontent.com/96331813/180595795-db6986b2-30f9-4931-bf82-74ad91321834.png)
 
--->
+
+## Types
+
