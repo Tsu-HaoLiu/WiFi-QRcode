@@ -11,12 +11,12 @@ usage: QRcodeGenerator.py [-h] -ssid SSID [-e ENCRYPTION] -p PASSWORD [-hid]
 ```
 | Argument                                                     | Type                | Description                                                                                                                |
 | ------------------------------------------------------------ | ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-  |-ssid SSID, -service_set_id SSID | | Service Set Identifier (SSID) is your Wi-Fi's name.|
-  |-e ENCRYPTION, --encryption ENCRYPTION | |  This is the type of encryption used on your Wi-Fi (WEP, WPA, WPA2, etc.)|
-  |-p PASSWORD, --password PASSWORD  | | The password of your Wi-Fi network.|
+  |-ssid, -service_set_id | | Service Set Identifier (SSID) is your Wi-Fi's name.|
+  |-e, --encryption | |  This is the type of encryption used on your Wi-Fi (WEP, WPA, WPA2, etc.)|
+  |-p, --password  | | The password of your Wi-Fi network.|
   | -hid, --hidden  | |   Append to command if your SSID is hidden.|
-  | -l LOGO, --logo LOGO  | | The file location you want in the middle of your QR code.|
-  | -s SIZE, --size SIZE | |  The size of your logo (default: 150).|
+  | -l, --logo  | | The file location you want in the middle of your QR code.|
+  | -s, --size | |  The size of your logo (default: 150).|
 
 
 
