@@ -15,8 +15,8 @@ usage: QRcodeGenerator.py [-h] -ssid SSID [-e ENCRYPTION] -p PASSWORD [-hid]
   |-e, --encryption | |  This is the type of encryption used on your Wi-Fi (WEP, WPA, WPA2, etc.)|
   |-p, --password  | Required | The password of your Wi-Fi network.|
   | -hid, --hidden  | |   Append to command if your SSID is hidden.|
-  | -l, --logo  | | The file location you want in the middle of your QR code.|
-  | -s, --size | |  The size of your logo (default: 150).|
+  | -l, --logo  | Optional | The file location you want in the middle of your QR code.|
+  | -s, --size | Optional |  The size of your logo (default: 150).|
 
 
 
