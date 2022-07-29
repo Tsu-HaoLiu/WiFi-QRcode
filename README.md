@@ -2,6 +2,12 @@
 Generate a simple QR code of your Wi-Fi info to share with famliy and friends to quickly join your network without the dreaded "What's the wifi password" question.
 
 
+## Features
+
+- Custom center logo
+- Custom logo size
+- Customizable inner, outer and background colors
+
 ## CLI Usage
 
 ```python
@@ -24,7 +30,4 @@ usage: QRcodeGenerator.py [-h] -ssid SSID [-e ENCRYPTION] -p PASSWORD [-hid]
 
 
 ![Custom QR codes](https://user-images.githubusercontent.com/96331813/180595795-db6986b2-30f9-4931-bf82-74ad91321834.png)
-
-
-## Types
 
