@@ -8,6 +8,12 @@ Generate a simple QR code of your Wi-Fi info to share with famliy and friends to
 - Custom logo size
 - Customizable inner, outer and background colors
 
+## Normal Usage
+```python
+$ python QRcodeGenerator.py
+```
+
+
 ## CLI Usage
 
 ```python
