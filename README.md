@@ -29,6 +29,7 @@ usage: QRcodeGenerator.py [-h] -ssid SSID [-e ENCRYPTION] -p PASSWORD [-hid]
   | -hid, --hidden  | |   Append to command if your SSID is hidden.|
   | -l, --logo  | Optional | The file location you want in the middle of your QR code.|
   | -s, --size | Optional |  The size of your logo (default: 150).|
+  | -c, --color | Optional |  |
 
 
 
