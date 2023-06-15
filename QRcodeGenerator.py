@@ -48,7 +48,7 @@ def generate_qr_code(userinput: dict, filename: str):
     encryption_type = userinput['encryption'] or ''
     password = userinput['password']
     hidden_ssid = userinput['hidden'] or False
-    color = userinput['color'] or ((255, 255, 255), (255, 255, 255), (255, 255, 255))
+    color = userinput['color'] or ((255, 255, 255), (0, 0, 0), (0, 0, 0))
 
     # qrcode.image.pil.PilImage
     wifi_format = f"WIFI:S:{ssid};T:{encryption_type};P:{password};H:{hidden_ssid};;"
@@ -74,7 +74,7 @@ def generate_qr_code(userinput: dict, filename: str):
                                            center_color=color[1],
                                            edge_color=color[2])
     )
-    
+
     # save the file
     img.save(filename)
     return img
@@ -119,7 +119,7 @@ def input_info():
         user_info['size'] = int(input("Size you want your logo (default: 150):") or 150)
 
     user_info['color'] = input("RGB color of the QR code center, edge, background (default: black & white)") or \
-        "(255, 255, 255), (255, 255, 255), (255, 255, 255)"
+        "(255, 255, 255), (0, 0, 0), (0, 0, 0)"
 
     main(user_info)
 
