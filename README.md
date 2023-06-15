@@ -33,8 +33,7 @@ usage: QRcodeGenerator.py [-h] -ssid SSID [-e ENCRYPTION] -p PASSWORD [-hid]
 
 
 
+
 ## Screenshots
 
-
-![Custom QR codes](https://user-images.githubusercontent.com/96331813/180595795-db6986b2-30f9-4931-bf82-74ad91321834.png)
-
+![Custom QR codes](https://github.com/Tsu-HaoLiu/WiFi-QRcode/assets/96331813/cb1ac66e-b971-4cd5-9b17-f54e8aef7797)
