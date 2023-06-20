@@ -10,15 +10,15 @@ Generate a simple QR code of your Wi-Fi info to share with famliy and friends to
 
 ## Normal Usage
 ```python
-$ python QRcodeGenerator.py
+$ python qr_logo_generator.py
 ```
 
 
 ## CLI Usage
 
 ```python
-$ python QRcodeGenerator.py --help
-usage: QRcodeGenerator.py [-h] -ssid SSID [-e ENCRYPTION] -p PASSWORD [-hid]
+$ python qr_logo_generator.py --help
+usage: qr_logo_generator.py [-h] -ssid SSID [-e ENCRYPTION] -p PASSWORD [-hid]
                           [-l LOGO] [-s SIZE]
 ```
 | Argument                                                     | Type                | Description                                                                                                                |
